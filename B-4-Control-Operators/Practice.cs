@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace Basic.Lesson_4._1
 {
@@ -19,15 +15,22 @@ namespace Basic.Lesson_4._1
             Console.Write("Введите второе число: ");
             y = Convert.ToInt32(Console.ReadLine());
             z = x + y;
-            Console.Write("Введите предполагаемый ответ:");
-            check = Convert.ToInt32(Console.ReadLine());
-            if (check == z)
+          
+            for (int i = 0; i < 3; i++)
             {
-                Console.WriteLine("Ответ верный!");
-            }
-            else
-            {
-                Console.WriteLine("Ответ неверный. Верный ответ:" + z);
+
+                Console.Write("Введите предполагаемый ответ:");
+                check = Convert.ToInt32(Console.ReadLine());
+
+                if (check == z)
+                {
+                    Console.WriteLine("Ответ верный!");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Ответ неверный. Верный ответ:" + z);
+                }
             }
         }
         //B4-P1/25. If_TimeOfDayGreeting
@@ -47,6 +50,7 @@ namespace Basic.Lesson_4._1
 
         //B4-P4/25. If_Akinator5Numbers
         public static void B4_P4_25_If_Akinator5Numbers()
+
         {
             
         }
@@ -54,12 +58,71 @@ namespace Basic.Lesson_4._1
         //B4-P5/25. Switch_DayOfWeek
         public static void B4_P5_25_Switch_DayOfWeek()
         {
+            var today = DateTime.Today;
+            var dayOfWeek = (int)today.DayOfWeek;
+            switch (dayOfWeek-1)
+            {
+                case 0: 
+                    Console.WriteLine("Доброго понедельника, Олга!");
+                    break;
+                case 1:
+                    Console.WriteLine("Доброго вторника, Олга!");
+                    break;
+                case 2:
+                    Console.WriteLine("Доброй среды, Олга!");
+                    break;
+                case 3:
+                    Console.WriteLine("Доброго четверга, Олга!");
+                    break;
+                case 4:
+                    Console.WriteLine("Доброй пятницы, Олга!");
+                    break;
+                case 5:
+                    Console.WriteLine("Доброй субботы, Олга!");
+                    break;
+                case 6:
+                    Console.WriteLine("Доброго воскресенья, Олга!");
+                    break;
+            }
+
         }
 
         //B4-P6/25. Switch_GameNavigation
         public static void B4_P6_25_Switch_GameNavigation()
         {
-            
+            LabelStart:
+
+            var batton = Console.ReadKey();
+            Console.WriteLine();
+            switch (batton.KeyChar)
+            {
+                case 'w':
+                    Console.WriteLine("Движение вверх");
+                    break;
+                case 'W':
+                    Console.WriteLine("Движение вверх");
+                    break;
+                case 'a':
+                    Console.WriteLine("Движение влево");
+                    break;
+                case 'A':
+                    Console.WriteLine("Движение влево");
+                    break;
+                case 's':
+                    Console.WriteLine("Движение вниз");
+                    break;
+                case 'S':
+                    Console.WriteLine("Движение вниз");
+                    break;
+                case 'd':
+                    Console.WriteLine("Движение вправо");
+                    break;
+                case 'D':
+                    Console.WriteLine("Движение вправо");
+                    break;
+           }
+
+            goto LabelStart;
         }
 
         //B4-P7/25. For_10OddEven
@@ -172,20 +235,82 @@ namespace Basic.Lesson_4._1
         //B4-P23/25 IfElse_Calcultor
         public static void B4_P23_25_IfElse_Calcultor()
         {
-            
-        }
+            double a, b, c;
+            char symbol = ' ';
+            Console.Write("Введите первое число: ");
+            a = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Введите второе число: ");
+            b = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Введите операцию ('+','-','*','/'): ");
+            symbol = Convert.ToChar(Console.ReadLine());
+            if (symbol == '+')
+            {
+                c = a + b;
+            }
+            else if (symbol == '-')
+            {
+                c = a - b;
+            }
+            else if (symbol == '*')
+            {
+                c = a * b;
+            }
+            else
+            {
+                c = a / b;
+            }
+
+            Console.WriteLine($"Результат: "+c);
+        
+    }
 
 
         //B4-P24_25 Switch_Calculator
         public static void B4_P24_25_Switch_Calculator()
         {
-            
+            double a, b, c;
+            char symbol = ' ';
+            Console.Write("Введите первое число: ");
+            a = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Введите второе число: ");
+            b = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Введите операцию ('+','-','*','/'): ");
+            symbol = Convert.ToChar(Console.ReadLine());
+            switch (symbol)
+            {
+                case '+': c = a + b;
+                    Console.WriteLine($"Результат: " + c);
+                    break;
+                case '-':
+                    c = a - b;
+                    Console.WriteLine($"Результат: " + c);
+                    break;
+                case '*':
+                    c = a * b;
+                    Console.WriteLine($"Результат: " + c);
+                    break;
+                case '/':
+                    c = a / b;
+                    Console.WriteLine($"Результат: " + c);
+                    break;
+                default: Console.WriteLine("Not supported operation"); break;
+            }
         }
 
 
         //B4-P25/25 Cycle_WordRevercse
         public static void B4_P25_25_Cycle_WordRevercse()
         {
+            string word;
+            Console.WriteLine("Введите любое слово: ");
+            word = Console.ReadLine();
+            char[] wordinarray = new char[word.Length];
+            for (int i = 0; i < word.Length; i++)
+            {
+                wordinarray[i] = word[i];
+            }
+            Array.Reverse(wordinarray); //Был очень приятно удивлен что уже есть готовый класс и метод для работы с массивами.
+            Console.WriteLine(wordinarray);
         }
     }
 }
