@@ -36,22 +36,84 @@ namespace Basic.Lesson_4._1
         //B4-P1/25. If_TimeOfDayGreeting
         public static void B4_P1_25_If_TimeOfDayGreeting()
         {
+            var time = DateTime.Now.TimeOfDay;
+            string timestring = Convert.ToString(time);
+            var charsToRemove = new string[] {":", "."};
+            foreach (var c in charsToRemove)
+            {
+                timestring = timestring.Replace(c, string.Empty);
+            }
+            timestring = timestring.Substring(0, timestring.Length-11);
+            var timestringtoint = Convert.ToInt64(timestring);
+            if (timestringtoint < 12 && timestringtoint > 6 )
+            {
+                Console.WriteLine("Доброе утро, Ольга!");
+            }else if(timestringtoint > 12 && timestringtoint < 18)
+
+            {
+                Console.WriteLine("Добрый день, Ольга!");
+            }
+            else
+            {
+                Console.WriteLine("Добрый вечер, Ольга!");
+            }
+
         }
 
         //B4-P2/25. If_NumbersComparing
         public static void B4_P2_25_If_NumbersComparing()
         {
+            int x, y, z;
+            Console.Write("Введите два числа: ");
+            x = Convert.ToInt32(Console.ReadLine());
+            y = Convert.ToInt32(Console.ReadLine());
+            if (x==y)
+            {
+                Console.WriteLine("Числа равны!");
+            }else if(x>y)
+            {
+                z = x - y;
+                Console.WriteLine("Значение X больше Y на " + z);
+            }
+            else
+            {
+                z = y - x;
+                Console.WriteLine("Значение X меньше Y на " +z);
+            }
         }
 
         //B4-P3/25. If_PositiveNumbersComparing
-        public static void B4_P3_25_If_PositiveNumbersComparing()
+        public static void B4_P3_25_If_PositiveNumbersComparing() //Не до конца понял в чем суть задачи была(((
         {
-        }
+            int x, y, z;
+            Console.Write("Введите два числа: ");
+            x = Convert.ToInt32(Console.ReadLine());
+            y = Convert.ToInt32(Console.ReadLine());
+            if (y>0 && y==0)
+            {
+                if (x == y)
+                {
+                    Console.WriteLine("Числа равны!");
+                }
+                else
+                {
+                    z = x - y;
+                    Console.WriteLine("Значение X больше Y на " + z);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Второе число меньше нуля!Введите число больше нуля");
+                y = Convert.ToInt32(Console.ReadLine());
+            }
+          }
 
         //B4-P4/25. If_Akinator5Numbers
         public static void B4_P4_25_If_Akinator5Numbers()
 
         {
+            Console.WriteLine("Загадайте число от 1 до 5");
+            int x;
             
         }
 
